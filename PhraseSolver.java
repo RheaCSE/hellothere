@@ -126,4 +126,5 @@ public class PhraseSolver
         else
             System.out.println("It's a tie!");
     }
+
 }
