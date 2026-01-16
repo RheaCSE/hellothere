@@ -1,6 +1,3 @@
-/*
- * Simple Player class for PhraseSolverGame
- */
 public class Player
 {
     private String name;
@@ -22,8 +19,13 @@ public class Player
         return totalScore;
     }
 
-    public void setTotalScore(int totalScore)
+    public void setName(String newName)
     {
-        this.totalScore = totalScore;
+        this.name = newName;
+    }
+
+    public void updateScore(int amount)
+    {
+        this.totalScore += amount;
     }
 }
