@@ -59,7 +59,14 @@ public class PhraseSolver
 
             System.out.print("Guess a letter or the full phrase: ");
             String guess = input.nextLine().trim();
+            
+            /*remove the guessed letter from the original Hello World phrase to prevent re-guessing*/
+            
 
+            if (guess == null) {
+                System.out.println("No input entered. Try again.");
+                continue;
+            }
             if (guess.isEmpty()) {
                 System.out.println("No input entered. Try again.");
                 continue;
@@ -79,21 +86,29 @@ public class PhraseSolver
                 {
                     int points = occurrences * board.getCurrentLetterValue();
                     System.out.println("Correct! The letter appears " + occurrences + " time(s). +" + points + " points.");
+                    
+                    
 
-                    if (currentPlayer == 1)
+                    if (currentPlayer == 1) {
                         player1.updateScore(points);
-                    else
+                        currentPlayer = 1;
+                    } else {
                         player2.updateScore(points);
+                        currentPlayer = 2;
+                    }
                 }
                 else
                 {
                     int penalty = board.getCurrentLetterValue();
                     System.out.println("Incorrect. -" + penalty + " points.");
-
-                    if (currentPlayer == 1)
+    
+                    if (currentPlayer == 1){
                         player1.updateScore(-penalty);
-                    else
+                        currentPlayer = 2;
+                    } else {
                         player2.updateScore(-penalty);
+                        currentPlayer = 1;
+                    }
                 }
             }
             else
@@ -116,10 +131,13 @@ public class PhraseSolver
                     int penalty = board.getCurrentLetterValue();
                     System.out.println("Incorrect guess. -" + penalty + " points.");
 
-                    if (currentPlayer == 1)
+                    if (currentPlayer == 1) {
                         player1.updateScore(-penalty);
-                    else
+                        currentPlayer = 2;
+                    } else {
                         player2.updateScore(-penalty);
+                        currentPlayer = 1;
+                    }
                 }
             }
 
@@ -132,7 +150,7 @@ public class PhraseSolver
             }
 
             // SWITCH PLAYER
-            currentPlayer = (currentPlayer == 1) ? 2 : 1;
+            
         }
 
         // FINAL RESULTS
